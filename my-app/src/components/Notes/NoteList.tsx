@@ -25,10 +25,9 @@ const NoteTitle = () => {
   );
 };
 
-const NoteList = (props: { setNotes: any }) => {
+const NoteList = () => {
   const notes = require("../../db.json");
   useEffect(() => {
-    props.setNotes(notes.notes);
   }, []);
 
   return (

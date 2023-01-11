@@ -1,12 +1,53 @@
 import NoteModel from "./NoteModel";
+import { useParams } from "react-router-dom";
+import InputGroup from "react-bootstrap/InputGroup";
+import Form from "react-bootstrap/Form";
 
 // display the details page for note, and u can update the note.
 
-const NoteDetail = (notes: NoteModel | any) => {
-  console.log(notes);
-  return <div>
-    <h1>Details</h1>
-  </div>;
+const NoteDetail = () => {
+  const notes = require("../../db.json");
+  const { id } = useParams<{ id: string }>();
+
+  let note = notes.notes.find((note: NoteModel) => note.id === id);
+
+  return (
+    <div>
+      <h1>Details</h1>
+      <InputGroup className="mb-3">
+        <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
+        <Form.Control
+          placeholder="Title"
+          aria-label="Title"
+          aria-describedby="basic-addon1"
+          defaultValue={note?.title}
+          onChange={(e) => {
+            note.title = e.target.value;
+          }}
+        />
+      </InputGroup>
+      <InputGroup>
+        <InputGroup.Text>Content</InputGroup.Text>
+        <Form.Control
+          as="textarea"
+          aria-label="With textarea"
+          defaultValue={note?.content}
+          onChange={(e) => {
+            note.content = e.target.value;
+          }}
+        />
+      </InputGroup>
+      <button
+        onClick={() => {
+          // update note
+          console.log("update note");
+          console.log(note);
+        }}
+      >
+        Update
+      </button>
+    </div>
+  );
 };
 
 export default NoteDetail;

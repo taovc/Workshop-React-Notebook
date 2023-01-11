@@ -13,3 +13,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.note-bg {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #545658;
+  min-height: 100vh;
+}
+
+.note-item {
+  width: 300%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  left: -100%;
+}

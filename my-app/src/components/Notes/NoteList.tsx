@@ -27,8 +27,9 @@ const NoteTitle = () => {
 
 const NoteList = (props: { setNotes: any }) => {
   const notes = require("../../db.json");
-  useEffect(() => {}, [notes]);
-  props.setNotes(notes.notes);
+  useEffect(() => {
+    props.setNotes(notes.notes);
+  }, []);
 
   return (
     <div>
@@ -42,7 +43,7 @@ const NoteList = (props: { setNotes: any }) => {
               className="note-item"
               key={note.id}
               onClick={() => {
-                console.log("clicked");
+                window.location.href = `/notes/${note.id}`;
               }}
             >
               {note.title}
@@ -57,8 +58,9 @@ const NoteList = (props: { setNotes: any }) => {
             height: "50px",
             width: "200px",
           }}
-          href="/"
-        >Home</Button>
+        >
+          Home
+        </Button>
       </div>
     </div>
   );

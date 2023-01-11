@@ -20,7 +20,7 @@ function App() {
           path="/notes"
           element={<NoteList setNotes={setNotes}/>}
         />
-        <Route path="/notes/:id" element={<NoteDetail />} />
+        <Route path="/notes/:id" element={<NoteDetail notes/>} />
         <Route path="*" element={<Home />} />
       </Routes>
     </Router>

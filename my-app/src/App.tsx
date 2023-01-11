@@ -16,8 +16,11 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/notes" element={<NoteList setNotes={setNotes} />} />
-        <Route path="/notes/:id" element={<NoteDetail/>} />
+        <Route
+          path="/notes"
+          element={<NoteList setNotes={setNotes}/>}
+        />
+        <Route path="/notes/:id" element={<NoteDetail />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </Router>

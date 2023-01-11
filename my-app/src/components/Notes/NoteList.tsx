@@ -1,6 +1,7 @@
 import NoteModel from "./NoteModel";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect } from "react";
+import { Button } from "react-bootstrap";
 
 const NoteTitle = () => {
   return (
@@ -26,10 +27,8 @@ const NoteTitle = () => {
 
 const NoteList = (props: { setNotes: any }) => {
   const notes = require("../../db.json");
-  useEffect(() => {
-  }, [notes]);
+  useEffect(() => {}, [notes]);
   props.setNotes(notes.notes);
-
 
   return (
     <div>
@@ -50,6 +49,16 @@ const NoteList = (props: { setNotes: any }) => {
             </ListGroup.Item>
           ))}
         </ListGroup>
+        <Button
+          variant="secondary"
+          style={{
+            position: "absolute",
+            bottom: "200px",
+            height: "50px",
+            width: "200px",
+          }}
+          href="/"
+        >Home</Button>
       </div>
     </div>
   );

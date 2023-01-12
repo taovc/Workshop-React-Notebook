@@ -25,17 +25,13 @@ const NoteTitle = () => {
   );
 };
 
-const NoteList = () => {
-  const notes = require("../../db.json");
-  useEffect(() => {
-  }, []);
-
+const NoteList = (props: { notes: any }) => {
   return (
     <div>
       <NoteTitle />
       <div className="note-bg">
         <ListGroup>
-          {notes.notes.map((note: NoteModel) => (
+          {props.notes.map((note: NoteModel) => (
             <ListGroup.Item
               action
               variant="secondary"
@@ -56,6 +52,9 @@ const NoteList = () => {
             bottom: "200px",
             height: "50px",
             width: "200px",
+          }}
+          onClick={() => {
+            window.location.href = "/";
           }}
         >
           Home

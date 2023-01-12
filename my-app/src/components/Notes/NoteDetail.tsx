@@ -5,11 +5,13 @@ import Form from "react-bootstrap/Form";
 
 // display the details page for note, and u can update the note.
 
-const NoteDetail = () => {
-  const notes = require("../../db.json");
+const NoteDetail = (props: { notes: NoteModel[] }) => {
+  const notes = props.notes;
   const { id } = useParams<{ id: string }>();
-
-  let note = notes.notes.find((note: NoteModel) => note.id === id);
+  if (id === undefined) {
+    return <div>404</div>;
+  }
+  let note = notes[parseInt(id) - 1];
 
   return (
     <div>
@@ -39,9 +41,6 @@ const NoteDetail = () => {
       </InputGroup>
       <button
         onClick={() => {
-          // update note
-          console.log("update note");
-          console.log(note);
         }}
       >
         Update

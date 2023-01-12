@@ -13,9 +13,6 @@ const NoteDetail = () => {
     return <div>404</div>;
   }
   let note = notes[parseInt(id) - 1];
-
-  console.log(note);
-
   return (
     <div>
       <h1>Details</h1>

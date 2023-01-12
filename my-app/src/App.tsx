@@ -9,8 +9,13 @@ function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
 
   useEffect(() => {
-    setNotes(require("./db.json").notes);
-  }, [require("./db.json").notes]);
+    if (localStorage.getItem("notes") === null) {
+      setNotes(require("./db.json").notes);
+      localStorage.setItem("notes", JSON.stringify(require("./db.json").notes));
+    } else {
+      setNotes(JSON.parse(localStorage.getItem("notes") || "[]"));
+    }
+  }, []);
 
   return (
     <Router>

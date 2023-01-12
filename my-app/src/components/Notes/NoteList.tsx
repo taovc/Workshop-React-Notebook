@@ -1,6 +1,5 @@
 import NoteModel from "./NoteModel";
 import ListGroup from "react-bootstrap/ListGroup";
-import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 
 const NoteTitle = () => {

@@ -2,6 +2,7 @@ import NoteModel from "./NoteModel";
 import { useParams } from "react-router-dom";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
+import noteCrud from "./NoteService";
 
 // display the details page for note, and u can update the note.
 
@@ -41,6 +42,7 @@ const NoteDetail = (props: { notes: NoteModel[] }) => {
       </InputGroup>
       <button
         onClick={() => {
+          noteCrud.UpdateNote(notes, id, note);
         }}
       >
         Update

@@ -1,6 +1,9 @@
 import NoteModel from "./NoteModel";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Button } from "react-bootstrap";
+import InputGroup from "react-bootstrap/InputGroup";
+import Form from "react-bootstrap/Form";
+import { useState } from "react";
 
 const NoteTitle = () => {
   return (
@@ -24,7 +27,64 @@ const NoteTitle = () => {
   );
 };
 
+const NoteCreate = (props: { setCreate: any }) => {
+  let note: NoteModel = {
+    id: "0",
+    title: "",
+    content: "",
+  };
+  return (
+    <div
+      style={{
+        justifyContent: "center",
+        alignItems: "center",
+        width: "30%",
+        margin: "auto",
+        marginTop: "-35%",
+      }}
+    >
+      <InputGroup className="mb-3">
+        <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
+        <Form.Control
+          placeholder="Title"
+          aria-label="Title"
+          aria-describedby="basic-addon1"
+          defaultValue={note?.title}
+          onChange={(e) => {
+            note.title = e.target.value;
+          }}
+        />
+      </InputGroup>
+      <InputGroup>
+        <InputGroup.Text>Content</InputGroup.Text>
+        <Form.Control
+          as="textarea"
+          aria-label="With textarea"
+          defaultValue={note?.content}
+          onChange={(e) => {
+            note.content = e.target.value;
+          }}
+        />
+      </InputGroup>
+      <button
+        className="btn btn-primary"
+        style={{
+          position: "relative",
+          left: "40%",
+        }}
+        onClick={() => {
+          props.setCreate(false);
+        }}
+      >
+        Create
+      </button>
+    </div>
+  );
+};
+
 const NoteList = (props: { notes: any }) => {
+  const [creating, setCreate] = useState(false);
+
   return (
     <div>
       <NoteTitle />
@@ -45,12 +105,13 @@ const NoteList = (props: { notes: any }) => {
           ))}
         </ListGroup>
         <Button
-          variant="secondary"
+          variant="primary"
           style={{
             position: "absolute",
             bottom: "200px",
             height: "50px",
             width: "200px",
+            left: "50%",
           }}
           onClick={() => {
             window.location.href = "/";
@@ -58,7 +119,23 @@ const NoteList = (props: { notes: any }) => {
         >
           Home
         </Button>
+        <Button
+          variant="secondary"
+          style={{
+            position: "absolute",
+            bottom: "200px",
+            height: "50px",
+            width: "200px",
+            left: "37%",
+          }}
+          onClick={() => {
+            setCreate(true);
+          }}
+        >
+          Create
+        </Button>
       </div>
+      {creating ? <NoteCreate setCreate={setCreate} /> : null}
     </div>
   );
 };

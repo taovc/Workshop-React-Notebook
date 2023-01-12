@@ -16,14 +16,6 @@ const Home = () => {
         >
           Go To Notes
         </Button>{" "}
-        <Button
-          variant="secondary"
-          onClick={() => {
-            window.location.href = "/note/create";
-          }}
-        >
-          Create A Note
-        </Button>
       </div>
     </div>
   );

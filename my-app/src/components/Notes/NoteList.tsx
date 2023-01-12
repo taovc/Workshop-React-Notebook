@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
+import noteCrud from "./NoteService";
 
 const NoteTitle = () => {
   return (
@@ -74,6 +75,7 @@ const NoteCreate = (props: { setCreate: any }) => {
         }}
         onClick={() => {
           props.setCreate(false);
+          noteCrud.CreateNote(note);
         }}
       >
         Create
@@ -82,26 +84,42 @@ const NoteCreate = (props: { setCreate: any }) => {
   );
 };
 
-const NoteList = (props: { notes: any }) => {
+const NoteList = () => {
   const [creating, setCreate] = useState(false);
+  const notes = noteCrud.ReadNotes();
 
   return (
     <div>
       <NoteTitle />
       <div className="note-bg">
         <ListGroup>
-          {props.notes.map((note: NoteModel) => (
-            <ListGroup.Item
-              action
-              variant="secondary"
-              className="note-item"
-              key={note.id}
-              onClick={() => {
-                window.location.href = `/notes/${note.id}`;
-              }}
-            >
-              {note.title}
-            </ListGroup.Item>
+          {notes.map((note: NoteModel) => (
+            <div key={note.id}>
+              <ListGroup.Item
+                action
+                variant="secondary"
+                className="note-item"
+                key={note.id}
+                onClick={() => {
+                  window.location.href = `/notes/${note.id}`;
+                }}
+              >
+                {note.title}
+              </ListGroup.Item>
+              <Button
+                variant="danger"
+                style={{
+                  position: "absolute",
+                  marginTop: "-40px",
+                  left: "60%",
+                }}
+                onClick={() => {
+                  noteCrud.DeleteNote(note.id);
+                }}
+              >
+                Delete {note.title}
+              </Button>
+            </div>
           ))}
         </ListGroup>
         <Button

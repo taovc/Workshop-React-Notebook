@@ -6,13 +6,15 @@ import noteCrud from "./NoteService";
 
 // display the details page for note, and u can update the note.
 
-const NoteDetail = (props: { notes: NoteModel[] }) => {
-  const notes = props.notes;
+const NoteDetail = () => {
+  const notes = noteCrud.ReadNotes();
   const { id } = useParams<{ id: string }>();
   if (id === undefined) {
     return <div>404</div>;
   }
   let note = notes[parseInt(id) - 1];
+
+  console.log(note);
 
   return (
     <div>
@@ -43,6 +45,7 @@ const NoteDetail = (props: { notes: NoteModel[] }) => {
       <button
         onClick={() => {
           noteCrud.UpdateNote(notes, id, note);
+          console.log(notes);
         }}
       >
         Update
